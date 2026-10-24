@@ -170,10 +170,6 @@ document.getElementById("wordBtn").addEventListener("click", function () {
   saveAsWord("scoreTable", currentClass + " - " + subject + " Results");
 });
 
-document.getElementById("excelBtn").addEventListener("click", function () {
-  saveAsExcel("scoreTable", currentClass + " - " + subject + " Results");
-});
-
 document.getElementById("pdfBtn").addEventListener("click", function () {
   saveAsPdf("scoreTable", currentClass + " - " + subject + " Results", false);
 });
@@ -214,14 +210,14 @@ if (!SpeechRecognition) {
   listener.onstart = function () {
     listening = true;
     voiceBtn.classList.add("listening");
-    voiceBtn.textContent = "⏹ Stop listening";
+    voiceBtn.textContent = "Stop listening";
     voiceStatus.textContent = "Listening… say a name, then the score.";
   };
 
   listener.onend = function () {
     listening = false;
     voiceBtn.classList.remove("listening");
-    voiceBtn.textContent = "🎤 Start voice input";
+    voiceBtn.textContent = "Start voice input";
   };
 
   listener.onerror = function (event) {
