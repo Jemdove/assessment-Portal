@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up · Assessment Portal</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+
+  <body class="center-page">
+    <main class="card signup-card">
+      <img class="signup-logo" src="/images/logo.svg" alt="Assessment Portal" />
+
+      <h1 class="signup-title">Create your account</h1>
+      <p class="signup-subtitle">Use the email the teacher in charge added for you. We'll send a link to confirm it's yours.</p>
+
+      <form action="/signup" method="POST">
+        <label class="field">
+          <span class="field-label">Full name</span>
+          <input class="input" type="text" name="name" placeholder="e.g. Ama Owusu" required autofocus />
+        </label>
+
+        <label class="field">
+          <span class="field-label">Email</span>
+          <input class="input" type="email" name="email" placeholder="name@gmail.com" required />
+        </label>
+
+        <label class="field">
+          <span class="field-label">Password</span>
+          <span class="password-box">
+            <input class="input" type="password" name="password" placeholder="At least 6 characters" minlength="6" required />
+            <button type="button" class="eye" aria-label="Show password"></button>
+          </span>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Confirm password</span>
+          <span class="password-box">
+            <input class="input" type="password" name="confirm" placeholder="Type it again" minlength="6" required />
+            <button type="button" class="eye" aria-label="Show password"></button>
+          </span>
+        </label>
+
+        <button class="btn btn-primary btn-full" type="submit">Create Account</button>
+      </form>
+
+      <p class="switch-link">Already have an account? <a href="/">Sign in</a></p>
+      <p class="switch-link">Can't get emails? <a href="/code">Use a code from the teacher in charge</a></p>
+
+      <p class="footer-note">&copy; JAAA Company</p>
+    </main>
+
+    <!-- eye button on password boxes -->
+    <script src="/js/password.js"></script>
+  </body>
+</html>

@@ -1,0 +1,782 @@
+/* =====================================================
+   1. COLOURS (solid palette)
+   Change these lines to re-colour every page.
+   ===================================================== */
+:root {
+  --navy: #1e3a8a;        /* top stripe, table headings, active class */
+  --blue: #2563eb;        /* main buttons and links */
+  --blue-dark: #1d4ed8;   /* buttons when the mouse is over them */
+  --blue-soft: #dbeafe;   /* class buttons */
+  --amber: #f59e0b;       /* small highlights */
+  --page: #eef2f8;        /* page background */
+  --card: #ffffff;        /* white boxes */
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #d6deea;
+  --row-alt: #f6f8fc;     /* every second table row */
+  --row-hover: #e8f0fe;
+  --soft: #f1f5fb;        /* voice box */
+  --success: #15803d;
+  --error: #b91c1c;
+}
+
+
+/* =====================================================
+   2. BASE (every page)
+   ===================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background: var(--page);
+  border-top: 6px solid var(--navy);
+}
+
+/* anything with the "hidden" attribute stays hidden */
+[hidden] {
+  display: none !important;
+}
+
+
+/* =====================================================
+   3. CENTERED PAGES (sign in, sign up, forgot, messages)
+   ===================================================== */
+.center-page {
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.signup-logo {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.signup-title {
+  margin: 0 0 6px;
+  font-size: 2rem;
+  color: var(--navy);
+}
+
+.signup-subtitle {
+  margin: 0 0 24px;
+  color: var(--muted);
+}
+
+.footer-note {
+  margin: 24px 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* "Already have an account? Sign in" line */
+.switch-link {
+  margin: 20px 0 0;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.switch-link a,
+.forgot-link a {
+  font-weight: 700;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.switch-link a:hover,
+.forgot-link a:hover {
+  text-decoration: underline;
+}
+
+/* "Forgot password?" under the password box */
+.forgot-link {
+  margin: -6px 0 16px;
+  font-size: 0.99rem;
+  text-align: right;
+}
+
+/* message page: errors, "check your email", etc. */
+.message-card {
+  width: 100%;
+  max-width: 550px;
+  text-align: center;
+}
+
+.message-icon {
+  font-size: 3rem;
+  margin: 0;
+}
+
+
+/* =====================================================
+   4. FORM FIELDS
+   ===================================================== */
+.field {
+  display: block;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+  background: #ffffff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+
+/* =====================================================
+   5. BUTTONS
+   ===================================================== */
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.15s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background: var(--blue);
+}
+
+.btn-primary:hover {
+  background: var(--blue-dark);
+}
+
+.btn-outline {
+  color: var(--blue);
+  background: #ffffff;
+  border: 1.5px solid var(--blue);
+}
+
+.btn-outline:hover {
+  background: var(--blue-soft);
+}
+
+.btn-danger {
+  color: #ffffff;
+  background: var(--error);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-small {
+  padding: 6px 10px;
+  font-size: 0.85rem;
+}
+
+.btn-voice {
+  color: #ffffff;
+  background: #0f766e;
+}
+
+/* red pulsing button while the microphone is listening */
+.btn-voice.listening {
+  background: var(--error);
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(185, 28, 28, 0);
+  }
+}
+
+
+/* =====================================================
+   6. PORTAL LAYOUT (subject portal and head portal)
+   ===================================================== */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 24px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-logo {
+  height: 44px;
+  width: auto;
+}
+
+.topbar-role {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.link-out {
+  font-weight: 600;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.portal {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* cards stacked under each other */
+.stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+.card-title {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+  color: var(--navy);
+}
+
+.card-text {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+/* class name | button in one row */
+.class-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+/* name | score | button in one row */
+.entry-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.class-form .field,
+.entry-form .field {
+  margin-bottom: 0;
+}
+
+/* stack the forms on phones */
+@media (max-width: 640px) {
+  .class-form,
+  .entry-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+.voice-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 14px;
+  background: var(--soft);
+  border-radius: 12px;
+}
+
+.voice-status {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+
+/* =====================================================
+   7. CLASS BUTTONS
+   ===================================================== */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* shown when there are no classes yet */
+.tabs:empty::before {
+  content: "No classes yet. Type a class name above to start one.";
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.tab {
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--blue-soft);
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.tab:hover {
+  border-color: var(--blue);
+}
+
+.tab-active {
+  color: #ffffff;
+  background: var(--navy);
+}
+
+
+/* =====================================================
+   8. MESSAGES (hidden automatically when empty)
+   ===================================================== */
+.message {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.message:empty {
+  display: none;
+}
+
+.message-success {
+  color: var(--success);
+  background: #dcfce7;
+}
+
+.message-error {
+  color: var(--error);
+  background: #fee2e2;
+}
+
+
+/* =====================================================
+   9. TABLES
+   ===================================================== */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.score-table thead {
+  background: var(--navy);
+}
+
+.score-table th {
+  padding: 12px;
+  font-size: 0.85rem;
+  text-align: left;
+  color: #ffffff;
+}
+
+.score-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.score-table tbody tr:nth-child(even) {
+  background: var(--row-alt);
+}
+
+.score-table tbody tr:hover {
+  background: var(--row-hover);
+}
+
+/* gold, silver and bronze for the top three positions */
+.score-table tr[data-position="1"] td:first-child {
+  font-weight: 800;
+  color: #b45309;
+}
+
+.score-table tr[data-position="2"] td:first-child {
+  font-weight: 800;
+  color: #64748b;
+}
+
+.score-table tr[data-position="3"] td:first-child {
+  font-weight: 800;
+  color: #9a3412;
+}
+
+/* "No scores yet" note: hidden once the table has rows */
+.empty-note {
+  margin: 0;
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.table-wrap:has(tbody:not(:empty)) .empty-note {
+  display: none;
+}
+
+/* teacher-in-charge table: score with grade under it */
+.result-table th {
+  min-width: 90px;
+}
+
+/* keep student names on one line */
+.result-table td:nth-child(2) {
+  white-space: nowrap;
+}
+
+.cell-score {
+  display: block;
+  font-weight: 700;
+}
+
+.result-table .grade {
+  margin-top: 4px;
+  padding: 2px 7px;
+  font-size: 0.7rem;
+}
+
+.missing {
+  color: var(--muted);
+}
+
+
+/* =====================================================
+   10. GRADE BADGES
+   ===================================================== */
+.grade {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  border-radius: 999px;
+}
+
+.grade-distinction {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.grade-excellent {
+  color: #047857;
+  background: #d1fae5;
+}
+
+.grade-very-good {
+  color: #0e7490;
+  background: #cffafe;
+}
+
+.grade-good {
+  color: #1d4ed8;
+  background: #dbeafe;
+}
+
+.grade-pass {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.grade-fail {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+
+/* =====================================================
+   11. SUBJECT STATUS CHIPS (teacher in charge)
+   ===================================================== */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: #f1f5f9;
+  border-radius: 999px;
+}
+
+.chip::before {
+  content: "⏳ ";
+}
+
+.chip-done {
+  color: var(--success);
+  background: #dcfce7;
+}
+
+.chip-done::before {
+  content: "✓ ";
+}
+
+
+/* =====================================================
+   12. TEACHERS LIST AND ONE-TIME CODES (teacher in charge)
+   ===================================================== */
+.status {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  border-radius: 999px;
+}
+
+.status-active {
+  color: var(--success);
+  background: #dcfce7;
+}
+
+.status-waiting {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.status-none {
+  color: var(--muted);
+  background: #f1f5f9;
+}
+
+/* the box that shows a new code (hidden while empty) */
+.code-box {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  line-height: 1.6;
+  background: #fffbeb;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+}
+
+.code-box:empty {
+  display: none;
+}
+
+/* the code itself: big and easy to read out */
+.code {
+  display: block;
+  margin: 6px 0;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--navy);
+}
+
+/* code box on the "use a code" page */
+.input-code {
+  font-family: "Consolas", "Courier New", monospace;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.field-hint {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+
+/* =====================================================
+   13. PASSWORD BOX WITH EYE BUTTON
+   CSS draws the eye. password.js only switches show / hide.
+   ===================================================== */
+.password-box {
+  position: relative;
+  display: block;
+}
+
+/* room on the right so the text doesn't go under the eye */
+.password-box .input {
+  padding-right: 52px;
+}
+
+.eye {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  width: 40px;
+  height: 36px;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 22px;
+  /* open eye = "click to show" */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
+}
+
+.eye:hover {
+  background-color: var(--soft);
+}
+
+.eye:focus-visible {
+  outline: 2px solid var(--blue);
+}
+
+/* crossed-out eye = password is showing, "click to hide" */
+.eye.showing {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24'/%3E%3Cline x1='1' y1='1' x2='23' y2='23'/%3E%3C/svg%3E");
+}
+
+/* hide the browser's own "show password" button (Edge) so there's only one eye */
+.password-box .input::-ms-reveal {
+  display: none;
+}
+
+/* two "switch" links under each other: less gap between them */
+.switch-link + .switch-link {
+  margin-top: 8px;
+}
+
+
+/* =====================================================
+   13. PRINTING
+   Add class="no-print" to anything you don't want printed.
+   ===================================================== */
+@page wide {
+  size: A4 landscape;
+  margin: 12mm;
+}
+
+.head-page .portal {
+  page: wide;
+}
+
+@media print {
+  body {
+    background: #ffffff;
+    border-top: none;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .portal {
+    padding: 0;
+  }
+
+  .card {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .table-wrap {
+    overflow: visible;
+    border: none;
+  }
+
+  .score-table {
+    font-size: 0.8rem;
+  }
+
+  .score-table thead {
+    background: none;
+  }
+
+  .score-table th {
+    color: #000000;
+    border-bottom: 2px solid #000000;
+  }
+
+  .score-table td {
+    border-bottom: 1px solid #999999;
+  }
+
+  .grade {
+    padding: 0;
+    color: #000000;
+    background: none;
+  }
+}

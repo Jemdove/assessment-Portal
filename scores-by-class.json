@@ -1,0 +1,86 @@
+{
+  "BASIC 4": {
+    "Mathematics": [
+      {
+        "name": "kofi",
+        "score": 100
+      },
+      {
+        "name": "jem don",
+        "score": 70
+      },
+      {
+        "name": "kojo",
+        "score": 65
+      },
+      {
+        "name": "kwaku",
+        "score": 60
+      },
+      {
+        "name": "yaw",
+        "score": 10
+      }
+    ],
+    "English Language": [
+      {
+        "name": "kwame",
+        "score": 100
+      },
+      {
+        "name": "kwaku",
+        "score": 85
+      },
+      {
+        "name": "yaw",
+        "score": 70
+      },
+      {
+        "name": "kofi",
+        "score": 60
+      },
+      {
+        "name": "kwabena",
+        "score": 60
+      }
+    ]
+  },
+  "BASIC 3": {
+    "Mathematics": [
+      {
+        "name": "jem don",
+        "score": 80
+      },
+      {
+        "name": "kwabena",
+        "score": 50
+      },
+      {
+        "name": "afia",
+        "score": 40
+      },
+      {
+        "name": "yaw",
+        "score": 30
+      }
+    ],
+    "English Language": [
+      {
+        "name": "yaw",
+        "score": 90
+      },
+      {
+        "name": "kofi",
+        "score": 70
+      },
+      {
+        "name": "kwabena",
+        "score": 60
+      },
+      {
+        "name": "jem don",
+        "score": 50
+      }
+    ]
+  }
+}

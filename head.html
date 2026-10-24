@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>All Results · Assessment Portal</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+
+  <body class="head-page">
+    <header class="topbar no-print">
+      <img class="topbar-logo" src="/images/logo.svg" alt="Assessment Portal" />
+      <span class="topbar-role"><span id="teacherName"></span> · Teacher in Charge of All Scores</span>
+      <a class="link-out" href="/logout">Sign out</a>
+    </header>
+
+    <main class="portal">
+
+      <!-- 1. Choose a class -->
+      <section class="card no-print">
+        <h1 class="card-title">Class</h1>
+        <p class="card-text">Type a class name or click a class below to see its results.</p>
+
+        <form id="classForm" class="class-form">
+          <label class="field">
+            <span class="field-label">Class name</span>
+            <input id="classInput" class="input" type="text" list="classOptions" maxlength="40" placeholder="e.g. JHS 1A" required />
+            <datalist id="classOptions"></datalist>
+          </label>
+
+          <button class="btn btn-primary" type="submit">Open class</button>
+        </form>
+
+        <div id="classTabs" class="tabs"></div>
+      </section>
+
+      <!-- Everything below stays hidden until a class is open -->
+      <div id="classArea" class="stack" hidden>
+
+        <!-- 2. Which subjects have sent scores for this class -->
+        <section class="card no-print">
+          <h2 class="card-title">Subjects received for <span class="class-name"></span></h2>
+          <p class="card-text">Green subjects have sent their scores. Grey ones are still waiting.</p>
+          <div id="subjectStatus" class="chips"></div>
+        </section>
+
+        <!-- 3. Overall results -->
+        <section class="card">
+          <h2 class="card-title"><span class="class-name"></span> · Results for All Subjects</h2>
+          <p class="card-text">
+            Students: <strong id="count">0</strong>.
+            Position is based on the total of all subject scores.
+          </p>
+
+          <div class="table-wrap">
+            <table id="resultTable" class="score-table result-table">
+              <thead>
+                <tr id="headRow"></tr>
+              </thead>
+              <tbody id="resultRows"></tbody>
+            </table>
+            <p class="empty-note">No scores have been sent for this class yet.</p>
+          </div>
+
+          <div class="actions no-print">
+            <button id="refreshBtn" class="btn btn-primary" type="button">🔄 Refresh scores</button>
+            <button id="wordBtn" class="btn btn-outline" type="button">Save as Word</button>
+            <button id="pdfBtn" class="btn btn-outline" type="button">Save as PDF</button>
+            <button id="printBtn" class="btn btn-outline" type="button">Print</button>
+            <button id="clearBtn" class="btn btn-danger" type="button">Delete this class</button>
+          </div>
+
+          <p id="message" class="message no-print"></p>
+
+          <div class="legend">
+            <span class="grade grade-distinction">80–100 Distinction</span>
+            <span class="grade grade-excellent">70–79 Excellent</span>
+            <span class="grade grade-very-good">60–69 Very Good</span>
+            <span class="grade grade-good">50–59 Good</span>
+            <span class="grade grade-pass">40–49 Pass</span>
+            <span class="grade grade-fail">0–39 Fail</span>
+          </div>
+        </section>
+      </div>
+
+      <!-- 4. Teachers and one-time codes -->
+      <section class="card no-print">
+        <h2 class="card-title">Teachers</h2>
+        <p class="card-text">
+          Everyone on the approved list. If a teacher forgot their password or can't get emails,
+          click <strong>Give code</strong> and tell them the code in person.
+        </p>
+
+        <div id="codeBox" class="code-box"></div>
+
+        <div class="table-wrap">
+          <table class="score-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="teacherRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- PDF tools -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- Our code -->
+    <script src="/js/common.js"></script>
+    <script src="/js/head.js"></script>
+  </body>
+</html>

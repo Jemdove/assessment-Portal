@@ -1,0 +1,14 @@
+[
+  { "email": "schoolportal077@gmail.com", "role": "head" },
+
+  { "email": "maths.teacher@example.com", "role": "Mathematics" },
+  { "email": "english.teacher@example.com", "role": "English Language" },
+  { "email": "science.teacher@example.com", "role": "Integrated Science" },
+  { "email": "social.teacher@example.com", "role": "Social Studies" },
+  { "email": "ict.teacher@example.com", "role": "Computing (ICT)" },
+  { "email": "french.teacher@example.com", "role": "French" },
+  { "email": "rme.teacher@example.com", "role": "Religious and Moral Education" },
+  { "email": "arts.teacher@example.com", "role": "Creative Arts" },
+  { "email": "careertech.teacher@example.com", "role": "Career Technology" },
+  { "email": "ghlang.teacher@example.com", "role": "Ghanaian Language" }
+]

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Subject Scores · Assessment Portal</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+
+  <body>
+    <header class="topbar no-print">
+      <img class="topbar-logo" src="/images/logo.svg" alt="Assessment Portal" />
+      <span class="topbar-role"><span id="teacherName"></span> · <span class="subject-name"></span> Teacher</span>
+      <a class="link-out" href="/logout">Sign out</a>
+    </header>
+
+    <main class="portal">
+
+      <!-- 1. Choose a class -->
+      <section class="card no-print">
+        <h1 class="card-title">Class</h1>
+        <p class="card-text">Type a class name to open it or start a new one, or click a class below.</p>
+
+        <form id="classForm" class="class-form">
+          <label class="field">
+            <span class="field-label">Class name</span>
+            <input id="classInput" class="input" type="text" list="classOptions" maxlength="40" placeholder="e.g. JHS 1A" required />
+            <datalist id="classOptions"></datalist>
+          </label>
+
+          <button class="btn btn-primary" type="submit">Open class</button>
+        </form>
+
+        <div id="classTabs" class="tabs"></div>
+      </section>
+
+      <!-- Everything below stays hidden until a class is open -->
+      <div id="classArea" class="stack" hidden>
+
+        <!-- 2. Enter scores -->
+        <section class="card no-print">
+          <h2 class="card-title">Enter <span class="subject-name"></span> scores for <span class="class-name"></span></h2>
+          <p class="card-text">Type a student's name and score (0–100), or use your voice.</p>
+
+          <form id="scoreForm" class="entry-form">
+            <label class="field">
+              <span class="field-label">Student name</span>
+              <input id="studentName" class="input" type="text" placeholder="e.g. Kofi Mensah" required />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Score</span>
+              <input id="studentScore" class="input" type="number" min="0" max="100" step="any" placeholder="0–100" required />
+            </label>
+
+            <button class="btn btn-primary" type="submit">Add score</button>
+          </form>
+
+          <div class="voice-box">
+            <button id="voiceBtn" class="btn btn-voice" type="button">Start voice input</button>
+            <p id="voiceStatus" class="voice-status">Say a name followed by the score, e.g. "Ama Owusu 85".</p>
+          </div>
+        </section>
+
+        <!-- 3. Ranked results -->
+        <section class="card">
+          <h2 class="card-title"><span class="class-name"></span> · <span class="subject-name"></span> Results</h2>
+          <p class="card-text">Students: <strong id="count">0</strong></p>
+
+          <div class="table-wrap">
+            <table id="scoreTable" class="score-table">
+              <thead>
+                <tr>
+                  <th>Position</th>
+                  <th>Student</th>
+                  <th>Score</th>
+                  <th>Grade</th>
+                  <th class="no-print">Action</th>
+                </tr>
+              </thead>
+              <tbody id="scoreRows"></tbody>
+            </table>
+            <p class="empty-note">No scores yet. Add the first student above.</p>
+          </div>
+
+          <div class="actions no-print">
+            <button id="sendBtn" class="btn btn-primary" type="button"> Send to Teacher in Charge</button>
+            <button id="sendBtn" class="btn btn-outline" type="button"> Save as Excel</button>
+            <button id="wordBtn" class="btn btn-outline" type="button">Save as Word</button>
+            <button id="pdfBtn" class="btn btn-outline" type="button">Save as PDF</button>
+            <button id="printBtn" class="btn btn-outline" type="button">Print</button>
+          </div>
+
+          <p id="message" class="message no-print"></p>
+
+          <div class="legend">
+            <span class="grade grade-distinction">80–100 Distinction</span>
+            <span class="grade grade-excellent">70–79 Excellent</span>
+            <span class="grade grade-very-good">60–69 Very Good</span>
+            <span class="grade grade-good">50–59 Good</span>
+            <span class="grade grade-pass">40–49 Pass</span>
+            <span class="grade grade-fail">0–39 Fail</span>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- PDF tools -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- Our code -->
+    <script src="/js/common.js"></script>
+    <script src="/js/portal.js"></script>
+  </body>
+</html>

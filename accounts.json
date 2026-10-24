@@ -1,0 +1,40 @@
+[
+  {
+    "email": "jeje5057ac@gmail.com",
+    "name": "Je Je",
+    "verified": false,
+    "salt": "df009b7ab531a454f0d63dd9cef8847f",
+    "hash": "bdaf4873674c647141f0c25376ce75c89cd2c10ad5c04f9e0a164d7f43695724f1c4b343864f85691a5a865b4a1fe58c5231bcd54b9efa62d98361d3e5b8409c",
+    "linkType": "verify",
+    "linkHash": "c4159fa7fd1a6dfdfd7ae2b3acdb7ebaf75adc63f8f1f9fd1ff271e4854c5669",
+    "linkExpires": 1792762785300
+  },
+  {
+    "email": "achiahjemima@gmail.com",
+    "name": "Je Je",
+    "verified": true,
+    "salt": "df09c44b481f00cd62ec8247417dda12",
+    "hash": "c71f71d660f3f4fb83d6c204443a7112155515e540112f34116d37dab6baa1158be6d5a9c2fd853f5dd5fdef77b175fcebf19d92f1010bac0b648c7711d47ba8"
+  },
+  {
+    "email": "maths.teacher@example.com",
+    "name": "Ama Owusu",
+    "salt": "cfc5f9e7bc1c929a5362dc048f08ea27",
+    "hash": "37da7ec5a4f21ef02c469139c82f3defb32070f3cfce29104808df174358b8e4f4ac48dbb69a04228824f5945aa21788a1f1af5b95149db2313d323c1eedd805",
+    "verified": true
+  },
+  {
+    "email": "english.teacher@example.com",
+    "name": "mr.kofi",
+    "salt": "2e6107e9b47047a40c122f82751262ff",
+    "hash": "29449fec3acfb8a695bb4016eeb422bc10ddcc0c1cd3820825edb68211f432799ab6bbecf9921a5cf5d6f092bbeee30c3b017a3ebdba6e1eacaddf9027c8f9bc",
+    "verified": true
+  },
+  {
+    "email": "schoolportal077@gmail.com",
+    "name": "jeje",
+    "verified": true,
+    "salt": "511b693a6a0acd5ed50ce48dc31ea195",
+    "hash": "3263dda4c1532ceef5f61a62a9939676ccf2e8bdfa86336cc6c48481807cc7e54f080e0dce640a034c7cf5e06c1dadbbbeed41adae5af988469260aad2727b34"
+  }
+]

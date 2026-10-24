@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Forgot Password · Assessment Portal</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+
+  <body class="center-page">
+    <main class="card signup-card">
+      <img class="signup-logo" src="/images/logo.svg" alt="Assessment Portal" />
+
+      <h1 class="signup-title">Forgot your password?</h1>
+      <p class="signup-subtitle">Type your email and we'll send you a link to choose a new one.</p>
+
+      <form action="/forgot" method="POST">
+        <label class="field">
+          <span class="field-label">Email</span>
+          <input class="input" type="email" name="email" placeholder="name@gmail.com" required autofocus />
+        </label>
+
+        <button class="btn btn-primary btn-full" type="submit">Send Reset Link</button>
+      </form>
+
+      <p class="switch-link">Can't get emails? <a href="/code">Use a code from the teacher in charge</a></p>
+      <p class="switch-link">Remembered it? <a href="/">Sign in</a></p>
+
+      <p class="footer-note">&copy; JAAA Company</p>
+    </main>
+  </body>
+</html>
