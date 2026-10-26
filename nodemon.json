@@ -2,6 +2,7 @@
   "ignore": [
     "accounts.json",
     "codes.json",
+    "reports.json",
     "scores-by-class.json",
     "scores.json",
     "teachers.json"
