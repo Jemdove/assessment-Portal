@@ -18,6 +18,7 @@ const SCORES_FILE = __dirname + "/scores-by-class.json"; // all scores, class by
 const TEACHERS_FILE = __dirname + "/teachers.json";      // approved emails + roles (you edit this)
 const ACCOUNTS_FILE = __dirname + "/accounts.json";      // names + scrambled passwords (made automatically)
 const CODES_FILE = __dirname + "/codes.json";            // one-time codes from the teacher in charge (made automatically)
+const REPORTS_FILE = __dirname + "/reports.json";        // NEW: attendance + remarks for report cards (made automatically)
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -355,6 +356,10 @@ app.post("/signin", function (req, res) {
   const email = (req.body.email || "").trim().toLowerCase();
   const password = req.body.password || "";
 
+  // Trying to sign in always signs out whoever was signed in before,
+  // so a failed attempt can't send you back into the old account
+  delete req.session.teacher;
+
   const account = readJson(ACCOUNTS_FILE, []).find(function (a) {
     return a.email === email;
   });
@@ -375,13 +380,18 @@ app.post("/signin", function (req, res) {
       "/", "Back to Sign In");
   }
 
-  req.session.teacher = {
-    name: account.name,
-    email: account.email,
-    role: approved.role
-  };
+  // Start a fresh session for the new account
+  req.session.regenerate(function () {
+    req.session.teacher = {
+      name: account.name,
+      email: account.email,
+      role: approved.role
+    };
 
-  res.redirect(homeFor(req.session.teacher));
+    req.session.save(function () {
+      res.redirect(homeFor(req.session.teacher));
+    });
+  });
 });
 
 app.get("/logout", function (req, res) {
@@ -705,7 +715,104 @@ app.delete("/api/scores", headOnly, function (req, res) {
 
   delete allScores[className];
   writeJson(SCORES_FILE, allScores);
+
+  // NEW: also remove that class's attendance and remarks
+  const reports = readJson(REPORTS_FILE, {});
+  delete reports[className];
+  writeJson(REPORTS_FILE, reports);
+
   res.json({ ok: true });
+});
+
+
+// =====================================================
+// NEW: REPORT CARD EXTRAS (teacher in charge only)
+// Attendance and remarks for each student's report card.
+// Saved like this:
+// { "JHS 1A": { term, year, totalDays, nextTerm,
+//               students: { "kofi mensah": { present, conduct, interest, remark } } } }
+// =====================================================
+
+// "Kofi  Mensah" and "kofi mensah" are the same student
+function studentKey(name) {
+  return String(name || "").trim().toLowerCase().replace(/\s+/g, " ").slice(0, 80);
+}
+
+function shortText(value, max) {
+  return String(value === undefined || value === null ? "" : value).trim().slice(0, max);
+}
+
+// A whole number of days from 0 to 1000, or undefined if left empty / not valid
+function dayCount(value) {
+  if (value === "" || value === undefined || value === null) {
+    return undefined;
+  }
+  const n = Number(value);
+  if (!Number.isInteger(n) || n < 0 || n > 1000) {
+    return undefined;
+  }
+  return n;
+}
+
+// Attendance and remarks for one class
+app.get("/api/reports", headOnly, function (req, res) {
+  const allScores = readJson(SCORES_FILE, {});
+  const className = findClassKey(allScores, cleanClassName(req.query.class));
+  const reports = readJson(REPORTS_FILE, {});
+
+  res.json(reports[className] || { students: {} });
+});
+
+// Save the class details plus one student's attendance and remarks
+app.post("/api/reports", headOnly, function (req, res) {
+  const allScores = readJson(SCORES_FILE, {});
+  const className = findClassKey(allScores, cleanClassName(req.body.className));
+  const student = req.body.student || {};
+  const key = studentKey(student.name);
+
+  if (!allScores[className]) {
+    return res.status(400).json({ error: "That class has no scores yet." });
+  }
+  if (key === "") {
+    return res.status(400).json({ error: "Missing student name." });
+  }
+
+  const totalDays = dayCount(req.body.totalDays);
+  const present = dayCount(student.present);
+
+  if (totalDays !== undefined && present !== undefined && present > totalDays) {
+    return res.status(400).json({ error: "Days present can't be more than the total school days." });
+  }
+
+  const reports = readJson(REPORTS_FILE, {});
+  const report = reports[className] || { students: {} };
+  report.students = report.students || {};
+
+  // details for the whole class
+  report.term = shortText(req.body.term, 40);
+  report.year = shortText(req.body.year, 20);
+  report.nextTerm = shortText(req.body.nextTerm, 40);
+  if (totalDays === undefined) {
+    delete report.totalDays;
+  } else {
+    report.totalDays = totalDays;
+  }
+
+  // details for this student only
+  const mine = {
+    conduct: shortText(student.conduct, 60),
+    interest: shortText(student.interest, 60),
+    remark: shortText(student.remark, 300)
+  };
+  if (present !== undefined) {
+    mine.present = present;
+  }
+  report.students[key] = mine;
+
+  reports[className] = report;
+  writeJson(REPORTS_FILE, reports);
+
+  res.json({ ok: true, report: report });
 });
 
 
