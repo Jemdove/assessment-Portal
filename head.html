@@ -6,12 +6,16 @@
     <title>All Results · Assessment Portal</title>
     <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/css/styles.css" />
+    <!-- NEW: student report cards + teachers button -->
+    <link rel="stylesheet" href="/css/report.css" />
   </head>
 
   <body class="head-page">
     <header class="topbar no-print">
       <img class="topbar-logo" src="/images/logo.svg" alt="Assessment Portal" />
       <span class="topbar-role"><span id="teacherName"></span> · Teacher in Charge of All Scores</span>
+      <!-- NEW: opens the Teachers & codes section -->
+      <button id="teachersBtn" class="btn btn-outline" type="button" aria-controls="teachersSection" aria-expanded="false">🔑 Teachers &amp; codes</button>
       <a class="link-out" href="/logout">Sign out</a>
     </header>
 
@@ -84,9 +88,14 @@
         </section>
       </div>
 
-      <!-- 4. Teachers and one-time codes -->
-      <section class="card no-print">
-        <h2 class="card-title">Teachers</h2>
+      <!-- 4. Teachers and one-time codes: a pop-up window, opened by the top-bar button -->
+      <div id="teachersSection" class="report-modal no-print" hidden>
+      <section class="card report-panel teachers-panel" role="dialog" aria-modal="true" aria-labelledby="teachersTitle">
+        <div class="report-toolbar">
+          <h2 id="teachersTitle" class="card-title teachers-title">Teachers &amp; codes</h2>
+          <span class="report-toolbar-gap"></span>
+          <button id="teachersClose" class="btn btn-outline" type="button">✕ Close</button>
+        </div>
         <p class="card-text">
           Everyone on the approved list. If a teacher forgot their password or can't get emails,
           click <strong>Give code</strong> and tell them the code in person.
@@ -109,6 +118,7 @@
           </table>
         </div>
       </section>
+      </div>
     </main>
 
     <!-- PDF tools -->
@@ -118,5 +128,7 @@
     <!-- Our code -->
     <script src="/js/common.js"></script>
     <script src="/js/head.js"></script>
+    <!-- NEW: student report cards + teachers button -->
+    <script src="/js/report.js"></script>
   </body>
 </html>
